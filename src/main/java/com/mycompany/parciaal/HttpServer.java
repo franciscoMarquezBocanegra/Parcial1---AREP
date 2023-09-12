@@ -2,11 +2,14 @@ package com.mycompany.parciaal;
 
 import java.net.*;
 import java.io.*;
+import static java.nio.file.Paths.get;
 
 public class HttpServer {
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = null;
+        
+        
         try {
             serverSocket = new ServerSocket(36000);
         } catch (IOException e) {
@@ -82,12 +85,23 @@ public class HttpServer {
                 + "        </script>\n"
                 + "    </body>\n"
                 + "</html>";
-           
-   
-    out.println(outputLine);
+
+        out.println(outputLine);
         out.close();
         in.close();
         clientSocket.close();
         serverSocket.close();
     }
+
+    private static int getPort() {
+        if (System.getenv("PORT") != null) {
+            return Integer.parseInt(System.getenv("PORT"));
+        }
+        return 36000;
+    }
+
+    private static void port(int port) {
+      
+    }
+
 }
